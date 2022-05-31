@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,500,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<title> Cisco Live NSO UI </title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm">
+  		<div class="container-fluid">
+   			<div class="navbar-header">
+    			<img src="https://www.ciscolive.com/c/dam/r/ciscolive/headlibs/img/us/logo-white-us-2019.png">
+   			</div>
+   			<div>
+    			<ul class="navbar-nav">
+     				<li class="nav-item">DEVWKS-1827: Demystifying NSO</li>
+    			</ul>
+   			</div>
+  		</div>
+	</nav>
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="menu">MENU</li>
+				<li><a href="/"><img src="https://i.imgur.com/0vTV6C4.png" id="item-1">Show Devices</a></li>
+				<li><a href="/get_ACLs"><img src="https://i.imgur.com/TueYrdX.png" id="item-2">Get ACLs</a></li>
+				<li><a href="/set_ACLs"><img src="https://i.imgur.com/bke9RPv.png" id="item-3">Set ACLs</a></li>
+				<li><a href="/delete_ACLs"><img src="https://i.imgur.com/lL96UCc.png" id="item-4"> Delete ACLs</a></li>
+			</ul>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<br>
+						<h1>DEVNET Workshop #1827 - Demystifying NSO</h1>
+						<br>
+						<form method="post" action="/set_ACLs/">
+						{% csrf_token %}
+  						<div class="form-group">
+   			 				<label>Device</label>
+    						<select name="device" class="form-control" id="exampleFormControlSelect1">
+      							{% for device in devices %}
+      							<option>{{ device }}</option>
+      							{% endfor %}
+    						</select>
+  						</div>
+   						<div class="form-group">
+   			 				<label>Name</label>
+    						<input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+  						</div>
+   						<input type="submit" value="OK">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<style>
+	body{
+		background: #F3F3F5;
+		font-family: 'Roboto', sans-serif;
+	}
+	nav{
+		background: #262626;
+	}
+
+	img{
+		width:40%;
+		padding:2%;
+	}
+
+	h1{
+		text-align: center;
+	}
+
+	.nav-item{
+		color: white;
+	}
+
+	.menu{
+		background: #4FB194;
+		line-height: 70px; 
+		padding-left: 60px; 
+		font-weight: 500; 
+		font-size: 150%; 
+		color: white;
+	}
+
+	#item-1{
+		width:16%;
+		margin-right:7%
+	}
+
+	#item-2{
+		width:18%;
+		margin-right:6%;
+	}
+
+	#item-3{
+		width:15%;
+		margin-right: 9%;
+	}
+
+	#item-4{
+		width:13%;
+		margin-right: 9%;
+	}
+
+	#sidebar-wrapper {
+		z-index: 1;
+		position: absolute;
+		width: 0;
+		height: 100%;
+		overflow-y: hidden;
+		background: #334050;
+	}
+
+	#page-content-wrapper{
+		width: 100%;
+		position:absolute;
+		padding: 15px;
+	}
+
+	#wrapper #sidebar-wrapper{
+		width: 250px;
+	}
+
+	#wrapper #page-content-wrapper{
+		padding-left: 250px
+	}
+
+	.sidebar-nav{
+		padding: 0;
+		list-style: none;
+	} 
+
+	.sidebar-nav li{
+		padding-top: 0px;
+		text-indent: 30px;
+		line-height: 80px;
+	}
+
+	.sidebar-nav li a{
+		font-family: 'Roboto', bold;
+		font-weight: 500;
+		display: block;
+		text-decoration: none;
+		color: #F3F3F5;
+		opacity:0.7;
+	}
+
+	.sidebar-nav li a:hover{
+		background: #231F20; 
+		opacity:0.8;
+	}
+</style>

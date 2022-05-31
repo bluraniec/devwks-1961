@@ -1,0 +1,6 @@
+cisco-iosxr IOS_XR0
+cisco-iosxr IOS_XR1
+juniper-junos JUN0
+juniper-junos JUN1
+cisco-ios IOS0
+cisco-ios IOS1

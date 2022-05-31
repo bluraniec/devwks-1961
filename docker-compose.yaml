@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  db:
+    image: postgres
+    networks:
+      master-network: 
+        ipv4_address: 172.16.238.4
+  web:
+    build: ./nso-ui
+    command: python3 manage.py runserver 0.0.0.0:8990
+    volumes:
+      - ./nso-ui:/nso-ui
+    ports:
+      - "8990:8990"
+    depends_on:
+      - db
+    networks:
+      master-network: 
+        ipv4_address: 172.16.238.3
+  nso:
+    image: devwks1827-nso
+    build: ./nso
+    volumes:
+      - ./nso/nso-install:/tmp/nso-install
+      - ./nso/ncs-run:/opt/ncs-run
+      - ./nso/neds:/tmp/neds
+    ports:
+      - 2025:2024
+      - 8090:8080
+      - 2023:2022
+    command: "./run.sh"
+    networks: 
+      master-network: 
+        ipv4_address: 172.16.238.2
+networks: 
+  master-network: 
+    ipam: 
+      config: 
+        - subnet: 172.16.238.0/24
